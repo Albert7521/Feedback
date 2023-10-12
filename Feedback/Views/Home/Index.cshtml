@@ -1,0 +1,56 @@
+﻿@model Feedback.Models.FeedbackViewModel
+
+<h2>Обратная связь</h2>
+
+<form asp-controller="Feedbackk" asp-action="Index" method="post">
+
+    <div class="form-group">
+        <label for="experience">Как давно пользуетесь Доверикс?</label>
+        <select class="form-control" id="experience" name="experience">
+            <option value="Меньше полугода">Меньше полугода</option>
+            <option value="Полгода">Полгода</option>
+            <option value="Больше полугода">Больше полугода</option>
+            <option value="Год">Год</option>
+            <option value="Больше года">Больше года</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Ваше имя</label>
+        <input asp-for="Name" placeholder="имя" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label >Ваша электронная почта</label>
+        <input asp-for="Email" placeholder="email" class="form-control" />
+        <span asp-validation-for="Email"  class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Номер телефона</label>
+        <input asp-for="Phone" placeholder="телефон" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label > Ваш отзыв</label>
+        <textarea asp-for="Message" placeholder="развернутый отзыв" class="form-control"></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="experience">Оцените нашу работу</label>
+        <select class="form-control" id="experience" name="experience">
+            <option value="1">Ужасно!(1)</option>
+            <option value="2">Плохо(2)</option>
+            <option value="3">Нормально(3)</option>
+            <option value="4">Хорошо(4)</option>
+            <option value="5">Очень хорошо!(5)</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+    <button type="submit" class="btn btn-primary">Отправить</button>
+    </div>
+</form>
