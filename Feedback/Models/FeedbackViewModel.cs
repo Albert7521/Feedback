@@ -7,7 +7,6 @@ namespace Feedback.Models
     {
         [Required]
         public string Name { get; set; } //имя
-
         [Required]
         [EmailAddress]
         public string Email { get; set; } //почта
@@ -22,6 +21,5 @@ namespace Feedback.Models
         public int Rating { get; set; }//оценка
         [Required]
         public int Phone { get; set; } //Телефон
-
     }
 }

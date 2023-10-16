@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Feedback.Models;
 using System.Diagnostics;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Feedback.Controllers
 {
+
     public class FeedbackController : Controller
     {
-        private readonly Feedback _context;
 
-        public FeedbackController(Feedback context)
+        private readonly FeedbackContext _context;
+
+        public FeedbackController(FeedbackContext context)
         {
             _context = context;
         }
@@ -24,7 +26,7 @@ namespace Feedback.Controllers
                 if (existingFeedback == null)
                 {
                     // Если отзыв с такой почтой не существует, создать новый
-                    var feedback = new Feedback
+                    var feedback = new FeedbackViewModel
                     {
                         Experience = model.Experience,
                         Name = model.Name,
@@ -39,9 +41,7 @@ namespace Feedback.Controllers
                 else
                 {
                     // Если отзыв с такой почтой существует, спросить пользователя о перезаписи
-                    // Здесь вы можете предоставить пользователю опцию перезаписать отзыв или отказаться
 
-                    // Например:
                     var overwrite = true; // Предположим, что пользователь согласился на перезапись
                     if (overwrite)
                     {
@@ -62,7 +62,11 @@ namespace Feedback.Controllers
 
             return View(model);
         }
-
+        public IActionResult GetFeedbacks()
+        {
+            var feedbacks = _context.Feedbacks.ToList();
+            return View(feedbacks);
+        }
         public IActionResult Confirmation()
         {
             return View();
